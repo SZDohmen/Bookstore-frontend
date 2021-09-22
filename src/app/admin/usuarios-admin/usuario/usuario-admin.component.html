@@ -1,0 +1,43 @@
+<div class="modal" *ngIf="visible" role="dialog"
+    style="display: table; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .4);">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="card-title" *ngIf="!usuario.id"> Nuevo usuario </h4>
+                <h4 class="card-title" *ngIf="usuario.id > 0"> Editar usuario </h4>
+                <button type="button" class="btn btn-light" (click)="closeModal()">X</button>
+            </div>
+
+            <div class="modal-body">
+                <h6 class="input-title">Nombre</h6>
+                <input type="text" class="form-control" [(ngModel)]="usuario.nombre" maxlength="50">
+
+                <h6 class="input-title">Apellido</h6>
+                <input type="text" class="form-control" [(ngModel)]="usuario.apellido" maxlength="50">                
+                
+                <div [formGroup]="formulario">
+                    <h6 class="input-title">Correo</h6>
+                    <input type="text" class="form-control" formControlName="mail" [(ngModel)]="usuario.mail" maxlength="10">
+                    <div class="alert alert-danger" role="alert" style="position: absolute;"
+                        *ngIf="formulario.controls['mail'].invalid && formulario.controls['mail'].dirty">
+                        Correo inválido
+                    </div>
+                </div>           
+
+                <h6 class="input-title">Dirección</h6>
+                <textarea name="text" style="width:100%;" [(ngModel)]="usuario.direccion" maxlength="500"></textarea>
+            </div>
+
+            <div class="modal-footer">
+                <div [formGroup]="formulario">
+                    <button type="button" class="btn btn-success ml-2" (click)="detail()"
+                        [disabled]="!formulario.valid">Guardar</button>
+                </div>
+                <button *ngIf="usuario.id > 0" type="button" class="btn btn-danger m-2"
+                    (click)="delete(usuario.id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

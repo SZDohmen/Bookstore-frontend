@@ -1,0 +1,44 @@
+<div style="margin-left:60px; margin-right:60px;">
+
+    <h4 style="font-style: italic;">Nuestro Catálogo</h4>
+    <h1 style="background-color:black; height:2px; width:100%; margin-bottom:10px;"></h1>
+
+    <form class="form-group">
+        <button class="btn btn-primary" (click)="detail(0)"> Agregar usuario </button>
+        <input class="form-control margen-top-5" type="text" placeholder="Buscar usuario . . ."
+            style="width: 255px; font-style: italic;  position:absolute; right:60px; margin-top:-40px;" name="filtro" [(ngModel)]="filtro">
+    </form>  
+
+    <!-- Catalogo Grid -->
+    <div class="grilla">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col"> Usuario </th>
+                    <th scope="col"> Correo </th>
+                    <th scope="col"> Teléfono </th>
+                    <th scope="col"> 
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios | usuarioFilter:filtro">
+                    <td> {{usuario.nombre}} {{usuario.apellido}} </td>
+                    <td> {{usuario.mail}} </td>
+                    <td> {{usuario.telefono}} </td>
+                    <td>
+                        <button class="btn btn-success" (click)="detail(usuario.id)"> Editar datos </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div *ngIf="modal===true">
+    <usuario-admin [visible]="modal" [usuarioId]="usuarioId"> </usuario-admin>
+</div>

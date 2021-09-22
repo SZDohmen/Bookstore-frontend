@@ -1,0 +1,13 @@
+.card {
+    display: inline-block;
+    margin: 10px;
+    width: 180px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.grilla {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}

@@ -1,0 +1,48 @@
+<div style="margin-left:60px; margin-right:60px;">
+
+    <h4 style="font-style: italic;">¡Novedades!</h4>
+    <h1 style="background-color:black; height:2px; width:100%; margin-bottom:10px;"></h1>
+
+    <!-- Carrusel -->
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" style="height:200px; margin:auto;">
+
+            <div class="carousel-item active">
+                <div style="position:absolute; left:50%;">
+                    <div style="position:relative; left:-50%; top:50px">
+                        <h3 style="text-align: center; font-weight: 500; color:white;">Promo 10% en toda tu compra con todos los medios de pago</h3>
+                    </div>
+                </div>
+                <img class="d-block w-100" src="https://www.ctvnews.ca/polopoly_fs/1.1064870.1416574677!/httpImage/image.jpeg_gen/derivatives/landscape_1020/image.jpeg"
+                    alt="First slide">
+            </div>
+
+            <ng-container *ngFor="let noticia of noticias">
+                <div class="carousel-item">
+                    <div style="position:absolute; left:50%;">
+                        <div style="position:relative; left:-50%; top:30px">
+                            <h3 (click)="detail(noticia.id)" style="text-align: center; font-weight: bold;"> {{noticia.titulo}} </h3>
+                        </div>
+                    </div>
+                    <img (click)="detail(noticia.id)" class="d-block w-100" [src]="noticia.imagen" alt="Second slide">
+                </div>
+            </ng-container>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- -------- -->
+
+</div>
+
+<!-- Modal -->
+<div *ngIf="modal===true">
+    <app-noticia [visible]="modal" [noticiaId]="noticiaId"> </app-noticia>
+</div>

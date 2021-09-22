@@ -1,0 +1,28 @@
+.card {
+    display: inline-block;
+    margin-left: 0px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: 800px; 
+}
+
+.grilla {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.card-body {
+    display: flex;
+}
+
+.column1 {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.column2 {
+    margin-bottom: 10px;
+    margin-left: 20px;;
+}

@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">BOOKSTORE</a>
+                <a class="nav-link" href="/contacto">Contacto</a>
+
+                <li class="nav-item dropdown" *ngIf="userActive == true">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> {{ currentUser.nombre }} </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/usuario" > Cuenta </a>
+                        <a class="dropdown-item" (click)="cerrarSesion()" > Cerrar sesión </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" *ngIf="userActive == false">                    
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> Ingresar </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" (click)="login(1)"> Iniciar sesión </a>
+                        <a class="dropdown-item" (click)="login(0)"> Registrarse </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" *ngIf="currentUser.mail=='admin@bookstore.com'">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> ABM </a>
+                    <div class="dropdown-menu" style="margin-right: -15px;">
+                        <a class="dropdown-item" href="/informes/admin" > ABM Informes </a>
+                        <a class="dropdown-item" href="/catalogo/admin" > ABM Catálogo </a>
+                        <a class="dropdown-item" href="/usuarios/admin" > ABM Usuarios </a>
+                    </div>
+                </li>       
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br>
+<h4 style="font-weight: bold; text-align: center;"> ~ BOOKSTORE ~ </h4>
+<br>
+
+<router-outlet></router-outlet>
+
+<!-- Modal - Log In -->
+<div *ngIf="modalVisible===true && loginId==1">
+    <app-login [modalVisible]="modalVisible"> </app-login>
+</div>
+
+<!-- Modal - Sign Up -->
+<div *ngIf="modalVisible===true && loginId==0">
+    <app-signup [modalVisible]="modalVisible"> </app-signup>
+</div>
+

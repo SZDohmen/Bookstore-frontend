@@ -1,0 +1,28 @@
+<div class="modal" *ngIf="modalVisible" role="dialog"
+    style="display: table; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .4);">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4> Nuevo Usuario </h4>
+                <button type="button" class="btn btn-light" (click)="closeModal()">X</button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="signupForm" (ngSubmit)="onSignup(signupForm.value)">
+                    <div>
+                        <h6 class="input-title">Correo electrónico</h6>
+                        <input type="email" class="input-login" placeholder=" . . ." formControlName="mail" maxlength="50">                                      
+                    </div>
+                </form>
+                
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success"> Registrarse </button>                
+                <button type="button" class="btn btn-secondary ml-2" (click)="closeModal()"> Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>

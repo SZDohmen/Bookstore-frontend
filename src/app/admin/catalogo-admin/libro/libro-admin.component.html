@@ -1,0 +1,55 @@
+<div class="modal" *ngIf="visible" role="dialog"
+    style="display: table; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .4);">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="card-title" *ngIf="!libro.id"> Nuevo libro </h4>
+                <h4 class="card-title" *ngIf="libro.id > 0"> Editar libro </h4>
+                <button type="button" class="btn btn-light" (click)="closeModal()">X</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-8">
+
+                        <h6 class="input-title">Titulo</h6>
+                        <input type="text" class="form-control" [(ngModel)]="libro.titulo" maxlength="50">
+
+                        <h6 class="input-title">Autor</h6>
+                        <input type="text" class="form-control" [(ngModel)]="libro.autor" maxlength="50">
+
+                        <div [formGroup]="formulario">
+                            <h6 class="input-title">Precio</h6>
+                            <input type="text" class="form-control" formControlName="precio" [(ngModel)]="libro.precio" maxlength="10">
+                            <div class="alert alert-danger" role="alert" style="position: absolute;"
+                                *ngIf="formulario.controls['precio'].invalid && formulario.controls['precio'].dirty">
+                                Ingresar números solamente
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <img [src]="libro.imagen" style="width:80px; height:125px; margin-bottom: 1px;" maxlength="500">
+
+                        <h6 class="input-title">Link de la Imágen</h6>
+                        <input type="text" class="form-control" [(ngModel)]="libro.imagen" maxlength="500">
+                    </div>
+                </div>
+
+                <h6 class="input-title">Descripción</h6>
+                <textarea name="text" style="width:100%;" [(ngModel)]="libro.descripcion" maxlength="500"></textarea>
+            </div>
+
+            <div class="modal-footer">
+                <div [formGroup]="formulario">
+                    <button type="button" class="btn btn-success ml-2" (click)="detail()"
+                        [disabled]="!formulario.valid">Guardar</button>
+                </div>
+                <button *ngIf="libro.id > 0" type="button" class="btn btn-danger m-2"
+                    (click)="delete(libro.id)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
